@@ -1,13 +1,14 @@
 import React from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Center, ChakraProvider } from '@chakra-ui/react';
 import theme from './theme';
+import { Home } from './pages';
 
 const App: React.FunctionComponent = () => {
   return (
     <ChakraProvider theme={theme}>
-      <div className="App">
-        <h2>Hello, World!</h2>
-      </div>
+      <Center w="100vw" h="100vh">
+        <Home />
+      </Center>
     </ChakraProvider>
   );
 };
