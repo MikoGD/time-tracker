@@ -1,13 +1,15 @@
 import React from 'react';
 import { Flex, Grid, Heading, Text } from '@chakra-ui/react';
+import { Styles } from '../../utility/style-checker';
 
 interface TimeSheetRowProps {
   isHeader?: boolean;
+  styles?: Styles;
 }
 
-export const TimeSheetRow: React.FC<TimeSheetRowProps> = ({ isHeader }) => {
+export const TimeSheetRow: React.FC<TimeSheetRowProps> = ({ isHeader, styles }) => {
   return isHeader ? (
-    <Grid templateColumns="3fr 2fr 2fr 1.75fr" w="100%" borderBottom="1px solid black">
+    <Grid templateColumns="3fr 2fr 2fr 1.75fr" w="100%" borderBottom="1px solid black" {...styles}>
       <Flex>
         <Heading>Description</Heading>
       </Flex>
@@ -22,7 +24,7 @@ export const TimeSheetRow: React.FC<TimeSheetRowProps> = ({ isHeader }) => {
       </Flex>
     </Grid>
   ) : (
-    <Grid templateColumns="3fr 2fr 2fr 1.75fr" w="100%">
+    <Grid templateColumns="3fr 2fr 2fr 1.75fr" w="100%" {...styles}>
       <Flex>
         <Text fontSize="24">Test description</Text>
       </Flex>

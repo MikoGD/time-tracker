@@ -7,7 +7,7 @@ interface HomeViewProps {}
 
 export const HomeView: React.FC<HomeViewProps> = () => {
   return (
-    <Center w="75rem" bg="gray.200">
+    <Center w="75rem">
       <TimeSheet />
     </Center>
   );
