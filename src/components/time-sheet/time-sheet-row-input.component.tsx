@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Select from 'react-select';
-import { Flex, FormControl, FormLabel, Grid, Input } from '@chakra-ui/react';
+import { Flex, Form, FormControl, FormLabel, Grid, Input } from '@chakra-ui/react';
 
 // REVIEW:
 interface TimeSheetRowInputProps {}
@@ -18,6 +18,7 @@ interface TimeOption {
 }
 
 export const TimeSheetRowInput: React.FC<TimeSheetRowInputProps> = () => {
+  const [description];
   const times = useMemo(() => {
     const tempTimes: string[] = [];
 
