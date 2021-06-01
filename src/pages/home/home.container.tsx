@@ -1,10 +1,7 @@
 import React from 'react';
 import { HomeView } from './home.view';
 
-// REVIEW:
-interface HomeContainerProps {}
-
-const HomeContainer: React.FC<HomeContainerProps> = () => {
+const HomeContainer: React.FC = () => {
   return <HomeView />;
 };
 
