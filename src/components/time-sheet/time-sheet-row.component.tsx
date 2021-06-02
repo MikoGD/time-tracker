@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Grid, Heading, Text } from '@chakra-ui/react';
-import { Styles } from '../../utility/style-checker';
+import { checkStyles, Styles } from '../../utility/style-checker';
 
 interface TimeSheetRowProps {
   isHeader?: boolean;
@@ -8,6 +8,10 @@ interface TimeSheetRowProps {
 }
 
 export const TimeSheetRow: React.FC<TimeSheetRowProps> = ({ isHeader, styles }) => {
+  const allowedStyles = ['bgColor'];
+
+  checkStyles(styles, 'time-sheet.view', allowedStyles);
+
   return isHeader ? (
     <Grid templateColumns="3fr 2fr 2fr 1.75fr" w="100%" borderBottom="1px solid black" {...styles}>
       <Flex>

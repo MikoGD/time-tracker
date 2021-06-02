@@ -1,9 +1,14 @@
-import React, { useMemo, useState } from 'react';
-import Select from 'react-select';
-import { Flex, Form, FormControl, FormLabel, Grid, Input } from '@chakra-ui/react';
+import React, { FormEvent, useMemo } from 'react';
+import { FormikProps } from 'formik';
+import { Button, Flex, FormControl, FormLabel, Grid, Input } from '@chakra-ui/react';
+import { CustomSelect } from '../custom-select';
+import { ConfiguredField } from '../form';
+import { TimeSheetSchema } from './time-sheet.model';
 
 // REVIEW:
-interface TimeSheetRowInputProps {}
+interface TimeSheetRowInputProps {
+  formikBag: FormikProps<TimeSheetSchema>;
+}
 
 const padLeadingZeros = (num: string, amount: number) => {
   let newNum = num;
@@ -13,12 +18,11 @@ const padLeadingZeros = (num: string, amount: number) => {
 };
 
 interface TimeOption {
-  value: string;
+  value: number;
   label: string;
 }
 
-export const TimeSheetRowInput: React.FC<TimeSheetRowInputProps> = () => {
-  const [description];
+export const TimeSheetRowInput: React.FC<TimeSheetRowInputProps> = ({ formikBag }) => {
   const times = useMemo(() => {
     const tempTimes: string[] = [];
 
@@ -32,30 +36,42 @@ export const TimeSheetRowInput: React.FC<TimeSheetRowInputProps> = () => {
 
   const options = useMemo(() => {
     const tempOptions: TimeOption[] = [];
-    times.forEach((time) => {
-      tempOptions.push({ label: time, value: time });
+    times.forEach((time, index) => {
+      tempOptions.push({ label: time, value: index * 5 });
     });
     return tempOptions;
   }, []);
 
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    formikBag.submitForm();
+  };
+
   return (
-    <Grid templateColumns="3fr 2fr 2fr 1.75fr" w="100%" borderBottom="1px solid black" h="10rem">
-      <FormControl as={Flex} id="description" flexDir="column">
-        <FormLabel>Description</FormLabel>
-        <Input borderRadius="none" />
-      </FormControl>
-      <FormControl as={Flex} id="start-time" flexDir="column">
-        <FormLabel>Start time</FormLabel>
-        <Select options={options} />
-      </FormControl>
-      <FormControl as={Flex} id="end-time" flexDir="column">
-        <FormLabel>End time</FormLabel>
-        <Select options={options} />
-      </FormControl>
-      <FormControl as={Flex} id="elapsed-time" flexDir="column">
-        <FormLabel>Elapsed time</FormLabel>
-        <Input borderRadius="none" />
-      </FormControl>
-    </Grid>
+    <form onSubmit={onSubmit}>
+      <Grid templateColumns="3fr 2fr 2fr 1.75fr" w="100%" borderBottom="1px solid black" h="10rem">
+        <FormControl as={Flex} id="description" flexDir="column">
+          <FormLabel>Description</FormLabel>
+          <ConfiguredField borderRadius="none" onChange={formikBag.handleChange} name="description" id="description" />
+        </FormControl>
+        <FormControl as={Flex} id="startTime" flexDir="column">
+          <FormLabel>Start time</FormLabel>
+          <CustomSelect<TimeOption>
+            options={options}
+            onChange={(optionValue) => optionValue && formikBag.setFieldValue('startTime', optionValue.value)}
+            name="startTime"
+          />
+        </FormControl>
+        <FormControl as={Flex} id="endTime" flexDir="column">
+          <FormLabel>End time</FormLabel>
+          <CustomSelect<TimeOption>
+            options={options}
+            onChange={(optionValue) => optionValue && formikBag.setFieldValue('endTime', optionValue.value)}
+            name="endTime"
+          />
+        </FormControl>
+        <Button type="submit">Add time</Button>
+      </Grid>
+    </form>
   );
 };
