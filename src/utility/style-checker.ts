@@ -2,7 +2,11 @@ export interface Styles {
   [property: string]: string | number;
 }
 
-export const styleChecker = (styles: Styles | undefined, componentName: string, allowedStyles: string[]) => {
+export const checkStyles = (
+  styles: Styles | undefined,
+  componentName: string,
+  allowedStyles: string[]
+): Styles | undefined => {
   if (styles) {
     Object.keys(styles).forEach((style) => {
       if (allowedStyles.find((allowedStyle) => allowedStyle === style) === undefined) {
