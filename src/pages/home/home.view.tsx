@@ -4,7 +4,7 @@ import { TimeSheet } from '../../components';
 
 export const HomeView: React.FC = () => {
   return (
-    <Center w="75rem">
+    <Center w="110rem">
       <TimeSheet />
     </Center>
   );
