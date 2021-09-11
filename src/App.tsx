@@ -1,15 +1,19 @@
 import React from 'react';
-import { Center, ChakraProvider } from '@chakra-ui/react';
-import theme from './theme';
-import { Home } from './pages';
+import { CssBaseline, Box, makeStyles, Container } from '@material-ui/core';
+import NavBar from './components/layouts/nav-bar.component';
+import Home from './pages/home';
 
 const App: React.FunctionComponent = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <Center w="100vw" h="100vh">
-        <Home />
-      </Center>
-    </ChakraProvider>
+    <Box width={1} height={1} display="flex" justifyContent="center" flexDirection="column">
+      <CssBaseline />
+      <NavBar />
+      <Box my={2} width={1}>
+        <Container maxWidth="md">
+          <Home />
+        </Container>
+      </Box>
+    </Box>
   );
 };
 
