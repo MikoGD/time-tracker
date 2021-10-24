@@ -1,7 +1,8 @@
+import React from 'react';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const NavBar = () => {
+const NavBar: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
