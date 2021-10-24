@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid, GridColumns } from '@mui/x-data-grid';
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 
 const Timesheet: React.FC = () => {
   const columns: GridColumns = [

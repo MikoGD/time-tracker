@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssBaseline, Box, makeStyles, Container } from '@material-ui/core';
+import { CssBaseline, Box, Container } from '@mui/material';
 import NavBar from './components/layouts/nav-bar.component';
 import Home from './pages/home';
 
